@@ -7,6 +7,8 @@ import { APP_ROUTES } from './app.routes';
 //  MODULOS
 import { PagesModule } from './pages/pages.module';
 
+import { FormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
@@ -22,7 +24,8 @@ import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component
   imports: [
     BrowserModule,
     PagesModule,
-    APP_ROUTES
+    APP_ROUTES,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
