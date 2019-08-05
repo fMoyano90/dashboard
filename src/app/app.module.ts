@@ -7,8 +7,13 @@ import { APP_ROUTES } from './app.routes';
 //  MODULOS
 import { PagesModule } from './pages/pages.module';
 
+// TEMPORAL
 import { FormsModule } from '@angular/forms';
 
+// SERVICIOS
+import { ServiceModule } from './services/service.module';
+
+// COMPONENTES
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
@@ -25,7 +30,8 @@ import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component
     BrowserModule,
     PagesModule,
     APP_ROUTES,
-    FormsModule
+    FormsModule,
+    ServiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
