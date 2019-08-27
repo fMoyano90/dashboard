@@ -8,7 +8,7 @@ import { APP_ROUTES } from './app.routes';
 import { PagesModule } from './pages/pages.module';
 
 // TEMPORAL
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // SERVICIOS
 import { ServiceModule } from './services/service.module';
@@ -31,6 +31,7 @@ import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component
     PagesModule,
     APP_ROUTES,
     FormsModule,
+    ReactiveFormsModule,
     ServiceModule
   ],
   providers: [],
