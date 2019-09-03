@@ -9,28 +9,27 @@ export class Graficas1Component implements OnInit {
 
   graficos: any = {
     'grafico1': {
-      'labels': ['Con Frijoles', 'Con Natilla', 'Con tocino'],
-      'data':  [24, 30, 46],
+      'labels': ['Meta', 'Expectativa', 'Realidad'],
+      'data':  [80, 95, 60],
       'type': 'doughnut',
-      'leyenda': 'El pan se come con'
+      'leyenda': 'Cumplimiento plan mantenimiento preventivo'
     },
     'grafico2': {
-      'labels': ['Hombres', 'Mujeres'],
-      'data':  [4500, 6000],
-      'type': 'doughnut',
-      'leyenda': 'Entrevistados'
+      'labels': ['Meta', 'Expectativa', 'Realidad'],
+      'data':  [6, 8, 7],
+      'type': 'pie',      'leyenda': 'Productividad bodega'
     },
     'grafico3': {
-      'labels': ['Si', 'No'],
-      'data':  [95, 5],
-      'type': 'doughnut',
-      'leyenda': '¿Le dan gases los frijoles?'
+      'labels': ['Meta', 'Mes actual', 'Mes pasado'],
+      'data':  [0, 5, 1],
+      'type': 'line',
+      'leyenda': 'Accidentes con tiempo perdido',
     },
     'grafico4': {
-      'labels': ['No', 'Si'],
-      'data':  [85, 15],
-      'type': 'doughnut',
-      'leyenda': '¿Le importa que le den gases?'
+      'labels': ['Mes actual'],
+      'data':  [30],
+      'type': 'bar',
+      'leyenda': 'Cantidad de servicios'
     },
   };
 
