@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 
+
 // Rutas
 import { PAGES_ROUTES } from './pages.routes';
 
@@ -15,6 +16,9 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
+import { ProfileComponent } from './profile/profile.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 // temporal
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
@@ -25,8 +29,6 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 
 // Pipes
 import { PipesModule } from '../pipes/pipes.module';
-import { ProfileComponent } from './profile/profile.component';
-import { UsuariosComponent } from './usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
@@ -40,13 +42,14 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
     PromesasComponent,
     RxjsComponent,
     ProfileComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    ModalUploadComponent
   ],
   exports: [
     PagesComponent,
     DashboardComponent,
     ProgressComponent,
-    Graficas1Component
+    Graficas1Component,
   ],
   imports: [
     CommonModule,

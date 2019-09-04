@@ -14,9 +14,19 @@ export class SidebarService {
         { titulo: 'Informes', url: '/progress' },
         { titulo: 'Estadisticas', url: '/graficas1' },
         { titulo: 'Historial', url: '/promesas' },
-        // { titulo: 'RXJS', url: '/rxjs' }
+        { titulo: 'RXJS', url: '/rxjs' }
+      ]
+    },
+    {
+      titulo: 'Matenimientos',
+      icono: 'mdi mdi-folder-lock-open',
+      submenu: [
+        { titulo: 'Usuarios', url: '/usuarios' },
+        { titulo: 'Empresas', url: '/empresas' },
+        { titulo: 'Administradores', url: '/administradores' }
       ]
     }
+
   ];
 
   constructor() { }
