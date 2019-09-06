@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import _swal from 'sweetalert';
 import { Router } from '@angular/router';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
+import { Administrador } from '../../models/administrador.model';
 
 @Injectable()
 export class UsuarioService {
@@ -145,4 +146,6 @@ export class UsuarioService {
                     return true;
                   }));
   }
+
+
 }

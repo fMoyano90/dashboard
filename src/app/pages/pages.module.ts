@@ -29,6 +29,9 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 
 // Pipes
 import { PipesModule } from '../pipes/pipes.module';
+import { EmpresasComponent } from './empresas/empresas.component';
+import { AdministradoresComponent } from './administradores/administradores.component';
+import { AdministradorComponent } from './administradores/administrador.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { PipesModule } from '../pipes/pipes.module';
     RxjsComponent,
     ProfileComponent,
     UsuariosComponent,
-    ModalUploadComponent
+    ModalUploadComponent,
+    EmpresasComponent,
+    AdministradoresComponent,
+    AdministradorComponent
   ],
   exports: [
     PagesComponent,

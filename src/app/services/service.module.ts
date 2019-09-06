@@ -10,7 +10,9 @@ import {
   SharedService,
   UsuarioService,
   LoginGuardGuard,
-  GraficoService
+  GraficoService,
+  EmpresaService,
+  AdministradorService,
 } from './service.index';
 
 @NgModule({
@@ -24,6 +26,8 @@ import {
     SidebarService,
     SharedService,
     UsuarioService,
+    EmpresaService,
+    AdministradorService,
     GraficoService,
     LoginGuardGuard,
     SubirArchivoService,

@@ -1,0 +1,50 @@
+<div class="row animated fadeIn">
+  <div class="col-md-6">
+    <div class="card card-body">
+        <h3 class="box-title m-b-0">Administrador</h3>
+        <p class="text-muted m-b-30 font-13"> {{administrador.nombre}}</p>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <form #f="ngForm" ngNativeValidate (ngSubmit)="guardarAdministrador(f)">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nombre del administrador</label>
+                        <input [(ngModel)]="administrador.nombre" name="nombre" type="text" class="form-control" placeholder="Nombre del administrador">
+                    </div>
+                    <div class="form-group">
+                        <label>Empresa</label>
+                        <select (change)="cambioEmpresa( $event.target.value )" [(ngModel)]="administrador.empresa" name="empresa" class="form-control">
+                          <option value="">Seleccione Empresa</option>
+                          <option *ngFor="let empresa of empresas" [value]="empresa._id">{{empresa.nombre}}</option>
+
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                    <i class="fa fa-save"></i>  Guardar
+                    </button>
+                    <a routerLink="/administradores" class="btn btn-inverse waves-effect waves-light">Volver</a>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-body">      
+        <h4 class="box-title m-b-0">Empresa</h4>
+        <img [src]="empresa.img | imagen:'empresa'" class="rounded img-fluid pt-2">
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3" *ngIf="administrador._id">
+    <div class="card">
+      <div class="card-body">      
+        <h4 class="box-title m-b-0">Fotografía</h4>
+        <img (click)="cambiarFoto()" [src]="administrador.img | imagen:'administrador'" class="img-circle img-fluid pt-2 pointer">
+      </div>
+    </div>
+  </div>
+
+</div>  

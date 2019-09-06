@@ -1,0 +1,61 @@
+<div class="row animated fadeIn">
+  <div class="col-12">
+      <div class="card">
+          <div class="card-body">
+
+              <input #input (keyup)="buscarAdministrador(input.value)" type="text" class="form-control" placeholder="Buscar administrador...">
+
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+              <div class="text-right">
+                <button 
+                  [routerLink]="['/administrador', 'nuevo']"
+                  class="btn btn-rounded btn-info float-right"
+                >
+                  <i class="fa fa-plus"></i> Crear administrador
+                </button>
+              </div>
+
+              <h3 class="card-title">Administradores registrados (<small> {{ _administadorService.totalAdministradores }} </small>)</h3>
+
+              <table class="table table-hover">
+                  <thead>
+                    <th>Foto</th>
+                    <th>Administrador</th>
+                    <th>Empresa</th>
+                    <th></th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let administrador of administradores">
+                      <td>
+                        <img [src]="administrador.img | imagen:'administrador'" class="w50 img-circle">
+                      </td>
+                      <td>{{administrador.nombre}}</td>
+                      <td>{{administrador.empresa.nombre}}</td>
+                      <td>
+                        <button [routerLink]="['/administrador', administrador._id]" class="btn btn-success">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button 
+                        (click)="borrarAdministrador( administrador )" 
+                        class="btn btn-danger"
+                        >
+                          <i class="fa fa-trash-o"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+              </table>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,6 +11,9 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { LoginGuardGuard } from '../services/guards/login-guard.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { EmpresasComponent } from './empresas/empresas.component';
+import { AdministradoresComponent } from './administradores/administradores.component';
+import { AdministradorComponent } from './administradores/administrador.component';
 
 
 const pagesRoutes: Routes = [
@@ -28,6 +31,9 @@ const pagesRoutes: Routes = [
             { path: 'perfil', component: ProfileComponent, data: { titulo: 'Perfil de usuario' } },
             // Mantenimientos
             { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Mantenimiento de Usuarios' } },
+            { path: 'empresas', component: EmpresasComponent, data: { titulo: 'Mantenimiento de Empresas' } },
+            { path: 'administradores', component: AdministradoresComponent, data: { titulo: 'Mantenimiento de Administradores' } },
+            { path: 'administrador/:id', component: AdministradorComponent, data: { titulo: 'Actualizar Administrador' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
     },
