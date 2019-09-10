@@ -8,12 +8,16 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 
+// GUARDS
 import { LoginGuardGuard } from '../services/guards/login-guard.guard';
+import { AdminGuard } from '../services/guards/admin.guard';
+
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { EmpresasComponent } from './empresas/empresas.component';
 import { AdministradoresComponent } from './administradores/administradores.component';
 import { AdministradorComponent } from './administradores/administrador.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 
 const pagesRoutes: Routes = [
@@ -29,8 +33,14 @@ const pagesRoutes: Routes = [
             { path: 'rxjs', component: RxjsComponent, data: { titulo: 'RxJs'} },
             { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Configuración'}  },
             { path: 'perfil', component: ProfileComponent, data: { titulo: 'Perfil de usuario' } },
+            { path: 'busqueda/:termino', component: BusquedaComponent, data: { titulo: 'Buscador' } },
             // Mantenimientos
-            { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Mantenimiento de Usuarios' } },
+            {
+                path: 'usuarios',
+                component: UsuariosComponent,
+                canActivate: [AdminGuard],
+                data: { titulo: 'Mantenimiento de Usuarios' },
+            },
             { path: 'empresas', component: EmpresasComponent, data: { titulo: 'Mantenimiento de Empresas' } },
             { path: 'administradores', component: AdministradoresComponent, data: { titulo: 'Mantenimiento de Administradores' } },
             { path: 'administrador/:id', component: AdministradorComponent, data: { titulo: 'Actualizar Administrador' } },

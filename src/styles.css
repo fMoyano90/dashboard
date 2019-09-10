@@ -17,6 +17,12 @@
 .w50{
     width: 50px;
 }
+.w40{
+    width: 40px;
+}
+.w35{
+    width: 35px;
+}
 
 .oculto{
     display: none;

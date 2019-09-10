@@ -10,6 +10,7 @@ import {
   SharedService,
   UsuarioService,
   LoginGuardGuard,
+  AdminGuard,
   GraficoService,
   EmpresaService,
   AdministradorService,
@@ -30,6 +31,7 @@ import {
     AdministradorService,
     GraficoService,
     LoginGuardGuard,
+    AdminGuard,
     SubirArchivoService,
     ModalUploadService
   ]

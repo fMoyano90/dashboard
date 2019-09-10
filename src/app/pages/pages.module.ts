@@ -32,6 +32,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { EmpresasComponent } from './empresas/empresas.component';
 import { AdministradoresComponent } from './administradores/administradores.component';
 import { AdministradorComponent } from './administradores/administrador.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { AdministradorComponent } from './administradores/administrador.componen
     ModalUploadComponent,
     EmpresasComponent,
     AdministradoresComponent,
-    AdministradorComponent
+    AdministradorComponent,
+    BusquedaComponent
   ],
   exports: [
     PagesComponent,
