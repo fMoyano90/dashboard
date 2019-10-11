@@ -13,6 +13,7 @@ import _swal from 'sweetalert';
 })
 export class EmpresasComponent implements OnInit {
   empresas: Empresa[] = [];
+  empresa: Empresa;
   desde: number = 0;
 
   totalRegistros: number = 0;
@@ -26,6 +27,8 @@ export class EmpresasComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.empresa = new Empresa('', '');
+
     this.cargarEmpresas();
 
     this._modalUploadService.notificacion
@@ -65,32 +68,8 @@ export class EmpresasComponent implements OnInit {
 
   }
 
-  crearEmpresa() {
-    _swal( {
-      content: {
-        element: "input",
-        attributes: {
-          placeholder: "Ingresa el nombre de la empresa",
-          type: "text",
-          name: "nombre"
-        },
-      },
-      title: '¿Quieres crear una empresa?',
-      buttons: ['Cancelar', 'Crear'],
-    })
-    .then( crear => {
-      if (crear) {
-        let empresa = new Empresa(
-          crear
-        );
-        this._empresaService.crearEmpresa(empresa)
-                      .subscribe( crear => {
-                        console.log(crear);
-                        this.cargarEmpresas();
-                      });
-      }
-    });
-  }
+
+
 
   buscarEmpresa(termino: string) {
 

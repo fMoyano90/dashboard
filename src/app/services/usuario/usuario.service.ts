@@ -145,8 +145,24 @@ export class UsuarioService {
 
   cargarUsuarios( desde: number = 0 ) {
 
-    let url = URL_SERVICIOS + '/usuario?desde=' + desde;
+    let url = URL_SERVICIOS + '/usuario/usuarios?desde=' + desde;
     return this.http.get( url );
+
+  }
+
+  
+  cargarAdministradores( desde: number = 0 ) {
+
+    let url = URL_SERVICIOS + '/usuario/administradores?desde=' + desde;
+    return this.http.get( url );
+
+  }
+
+  cargarUsuario( id: string ){
+    let url = URL_SERVICIOS + '/usuario/' + id;
+
+    return this.http.get( url )
+                  .pipe(map((resp:any) => resp.usuario));
 
   }
 

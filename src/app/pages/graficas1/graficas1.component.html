@@ -1,15 +1,25 @@
 <div class="row">
+    <div class="col-6">
+        <h2><b>{{empresa.nombre}} </b> <small>{{month}} {{year}}</small></h2>
+    </div>
+    <div class="col-6 text-right">
+        <button class="btn btn-outline-info">Descargar Informe en PDF</button>
+    </div>
+</div>
+
+<div class="row">
   <div class="col-6">
       <div class="card">
           <div class="card-body">
-
             <h4 class="card-title">{{graficos.grafico1.leyenda}}</h4>
 
-            <app-grafico-dona
-              [chartLabels]="graficos.grafico1.labels"
-              [chartData]="graficos.grafico1.data"
-              [chartType]="graficos.grafico1.type"
-            ></app-grafico-dona>
+            <app-grafico-barra
+            [chartLabels]="graficos.grafico1.labels"
+            [chartData]="graficos.grafico1.datasets"
+            [chartType]="graficos.grafico1.type"
+            [chartLegend]="graficos.grafico1.legend"
+            [chartOptions]="graficos.grafico1.options"
+            ></app-grafico-barra>
                                
           </div>
       </div>
@@ -21,11 +31,13 @@
 
             <h4 class="card-title">{{graficos.grafico2.leyenda}}</h4>
 
-            <app-grafico-dona
+            <app-grafico-barra
             [chartLabels]="graficos.grafico2.labels"
-            [chartData]="graficos.grafico2.data"
+            [chartData]="graficos.grafico2.datasets"
             [chartType]="graficos.grafico2.type"
-          ></app-grafico-dona>
+            [chartLegend]="graficos.grafico2.legend"
+            [chartOptions]="graficos.grafico2.options"
+            ></app-grafico-barra>
                     
         </div>
     </div>
@@ -39,11 +51,13 @@
 
                 <h4 class="card-title">{{graficos.grafico3.leyenda}}</h4>
   
-                <app-grafico-dona
+                <app-grafico-barra
                 [chartLabels]="graficos.grafico3.labels"
-                [chartData]="graficos.grafico3.data"
-                [chartType]="graficos.grafico3.type">
-                </app-grafico-dona>
+                [chartData]="graficos.grafico3.datasets"
+                [chartType]="graficos.grafico3.type"
+                [chartLegend]="graficos.grafico3.legend"
+                [chartOptions]="graficos.grafico3.options"
+                ></app-grafico-barra>
                                  
             </div>
         </div>
@@ -55,13 +69,163 @@
 
               <h4 class="card-title">{{ graficos.grafico4.leyenda }}</h4>
   
-              <app-grafico-dona
+              <app-grafico-barra
               [chartLabels]="graficos.grafico4.labels"
-              [chartData]="graficos.grafico4.data"
-              [chartType]="graficos.grafico4.type">
-              </app-grafico-dona>
+              [chartData]="graficos.grafico4.datasets"
+              [chartType]="graficos.grafico4.type"
+              [chartLegend]="graficos.grafico4.legend"
+              [chartOptions]="graficos.grafico4.options"
+              ></app-grafico-barra>
                       
           </div>
       </div>
     </div>
 </div> 
+
+<div class="row">
+  <div class="col-6">
+      <div class="card">
+          <div class="card-body">
+
+              <h4 class="card-title">{{graficos.grafico5.leyenda}}</h4>
+
+              <app-grafico-dona
+              [chartLabels]="graficos.grafico5.labels"
+              [chartData]="graficos.grafico5.data"
+              [chartType]="graficos.grafico5.type">
+              </app-grafico-dona>
+                               
+          </div>
+      </div>
+  </div>
+
+  <div class="col-6">
+    <div class="card">
+        <div class="card-body">
+
+            <h4 class="card-title">{{ graficos.grafico6.leyenda }}</h4>
+
+            <app-grafico-dona
+            [chartLabels]="graficos.grafico6.labels"
+            [chartData]="graficos.grafico6.data"
+            [chartType]="graficos.grafico6.type"
+            [chartOptions]="graficos.grafico6.options">
+            </app-grafico-dona>
+                    
+        </div>
+    </div>
+  </div>
+</div> 
+
+<div class="row">
+  <div class="col-6">
+      <div class="card">
+          <div class="card-body">
+
+              <h4 class="card-title">{{graficos.grafico7.leyenda}}</h4>
+
+              <app-grafico-dona
+              [chartLabels]="graficos.grafico7.labels"
+              [chartData]="graficos.grafico7.data"
+              [chartType]="graficos.grafico7.type"
+              [chartOptions]="graficos.grafico7.options">
+              </app-grafico-dona>
+                               
+          </div>
+      </div>
+  </div>
+
+  <div class="col-6">
+    <div class="card">
+        <div class="card-body">
+
+            <h4 class="card-title">{{ graficos.grafico8.leyenda }}</h4>
+
+            <app-grafico-dona
+            [chartLabels]="graficos.grafico8.labels"
+            [chartData]="graficos.grafico8.data"
+            [chartType]="graficos.grafico8.type"
+            [chartOptions]="graficos.grafico8.options">
+            </app-grafico-dona>
+                    
+        </div>
+    </div>
+  </div>
+</div> 
+
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+  
+                <h4 class="card-title">{{graficos.grafico9.leyenda}}</h4>
+  
+                <app-grafico-dona
+                [chartLabels]="graficos.grafico9.labels"
+                [chartData]="graficos.grafico9.data"
+                [chartType]="graficos.grafico9.type"
+                [chartOptions]="graficos.grafico9.options">
+                </app-grafico-dona>
+                                 
+            </div>
+        </div>
+    </div>
+  
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">{{titulo}}</h4>
+              
+              <div id="chartdiv" style="width: 100%; height: 226px"></div>
+
+            </div>
+        </div>
+    </div>
+  </div> 
+
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">{{titulo2}}</h4>
+              
+              <div id="chartdiv2" style="width: 100%; height: 226px"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+      <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">{{titulo3}}</h4>
+            
+            <div id="chartdiv3" style="width: 100%; height: 226px"></div>
+
+          </div>
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+      <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">{{titulo4}}</h4>
+            <div id="chartdiv4" style="width: 100%; height: 226px"></div>
+          </div>
+      </div>
+  </div>
+  <div class="col-6">
+    <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Satisfacción del cliente</h4>
+          <div class="row pt-5"  style="width: 100%; height: 226px">
+              <div class="col-12 text-center">
+                  <img src="assets/images/bueno.png" class="img-fluid animated infinite pulse" style="height: 120px; width: auto;">
+                  <p><b>{{dataG14}}%</b></p>
+              </div>
+        
+          </div>
+        </div>
+    </div>
+   </div>
+ </div>

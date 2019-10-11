@@ -1,0 +1,401 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+              <h2><b>{{empresa.nombre}}</b> <small> Contrato: {{empresa.categoria}}</small></h2>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+              <h3>GRAFICOS DE BARRA</h3>
+              <hr>
+
+              <!--ATP-->
+              <h3>Accidentes con tiempo perdido</h3>
+              <p>Indica la Cantidad de Accidentes con Tiempo Perdido en el Periodo</p>
+              <form ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGrafico()">
+                <div class="form-group">
+                  <label>Accidentes con tiempo perdido en el periodo</label><br>
+                  <input class="form-control" 
+                  formControlName="data"
+                  type="number" 
+                  style="width: 55px;"
+                  name="data" 
+                  required>
+                </div>
+                <input 
+                name="tipo" 
+                formControlName="tipo"
+                ngModel="'ATP'"
+                type="hidden">
+                <button class="btn btn-info" type="submit">Actualizar grafico</button>
+              </form>
+
+              <hr *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
+
+              <!--PBO-->
+              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoUno()">
+              <h3>Productividad bodega</h3>
+              <p>Mide el grado de eficiencia del personal de bodega</p>
+                <div class="form-group">
+                  <label>(Cantidad de Líneas entregadas / Total de Líneas Solicitadas) * 100</label><br>
+                  <input class="form-control" type="number" style="width: 55px;" name="val1" #val1>
+                  <p class="form-control"> / </p>
+                  <input class="form-control" type="number" style="width: 55px;" name="val2" #val2>
+                  <p class="form-control"> x 100 </p>&nbsp;
+                  <button type="button" class="btn btn-primary" (click)="operacionUno(val1.value, val2.value)">Realizar calculo</button>
+                  Resultado: <b>{{resultado}}</b>
+                </div>
+                <input 
+                    name="data" 
+                    formControlName="data"
+                    [ngModel]="resultado"
+                    type="hidden">
+                <input 
+                name="tipo" 
+                formControlName="tipo"
+                ngModel="'ATP'"
+                type="hidden">
+                <button class="btn btn-info" type="submit">Actualizar grafico</button>
+              </form>
+
+
+              <hr *ngIf="empresa.categoria === 'TRANSPORTE' || empresa.categoria === 'MIXTO'">
+
+              <!--PTE-->
+              <form *ngIf="empresa.categoria === 'TRANSPORTE' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoDos()">
+                  <h3>Productividad transporte por Equipo</h3>
+                  <p>Mide el grado de eficiencia del personal de transporte según el número de equipos</p>
+                    <div class="form-group">
+                      <label>Cantidad de Viajes  / (Total de Equipos * Días Mes)</label><br>
+                      <input class="form-control" type="number" style="width: 55px;" name="val1" #val1>
+                      <p class="form-control"> / </p>(
+                      <input class="form-control" type="number" style="width: 55px;" name="val2" #val2>
+                      <p class="form-control"> x </p>
+                      <input class="form-control" type="number" style="width: 55px;" name="val3" #val3>
+                      )
+                      <button type="button" class="btn btn-primary" (click)="operacionDos(val1.value, val2.value, val3.value)">Realizar calculo</button>
+                      Resultado: <b>{{resultado1}}</b>
+                    </div>
+                    <input 
+                    name="data" 
+                    formControlName="data"
+                    [ngModel]="resultado1"
+                    type="hidden">
+
+                    <button class="btn btn-info" type="submit">Actualizar grafico</button>
+                  </form>
+    
+                  <hr *ngIf="empresa.categoria === 'BASICO' || empresa.categoria === 'MIXTO'">
+
+                  <!--CSR-->
+              <form *ngIf="empresa.categoria === 'BASICO' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoTres()">
+                  <h3>Cantidad de Servicios</h3>
+                  <p>Mide la cantidad de servicios realizados en el mes.</p>
+                    <div class="form-group">
+                      <label>Cantidad de servicios en el mes</label><br>
+                      <input class="form-control" 
+                      formControlName="data"
+                      type="number" 
+                      style="width: 55px;"
+                      name="data" 
+                      required>
+                    </div>
+                    <input 
+                name="tipo" 
+                formControlName="tipo"
+                ngModel="'ATP'"
+                type="hidden">
+                    <button class="btn btn-info" type="submit">Actualizar grafico</button>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row"  *ngIf="empresa.categoria === 'TRANSPORTE' || empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+              
+              <h3>GRAFICOS DE TORTA</h3>
+              <hr *ngIf="empresa.categoria === 'TRANSPORTE' || empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
+
+              <!--DEQ-->
+              <form *ngIf="empresa.categoria === 'TRANSPORTE' || empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoCuatro()">
+              <h3>Disponibilidad de Equipos</h3>
+              <p>Mide el porcentaje de disponibilidad de la Flota</p>
+              <div class="form-group">
+                <label>(Cantidad de Líneas entregadas / Total de Líneas Solicitadas) * 100</label><br>
+                <input class="form-control" type="number" style="width: 55px;" name="val1" #val1>
+                <p class="form-control"> / </p>
+                <input class="form-control" type="number" style="width: 55px;" name="val2" #val2>
+                <p class="form-control"> x 100 </p>&nbsp;
+                <button type="button" class="btn btn-primary" (click)="operacionTres(val1.value, val2.value)">Realizar calculo</button>
+                Resultado: {{resultado2}}
+              </div>
+              <input 
+                    name="data" 
+                    formControlName="data"
+                    [ngModel]="resultado2"
+                    type="hidden">
+              <button class="btn btn-info" type="submit">Actualizar grafico</button>
+            </form>
+
+              <hr *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
+
+              <!--DUP-->
+              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoCinco()">
+              <h3>Disponibilidad de uso pulmones</h3>
+                <div class="form-group">
+                  <label>Cantidad de Líneas Procesadas / Cantidad de Líneas Solicitadas</label><br>
+                  <input class="form-control" type="number" required style="width: 55px;" name="val1" #val1>
+                  <p class="form-control"> / </p>
+                  <input class="form-control" type="number" required style="width: 55px;" name="val2" #val2>&nbsp;
+                  <button type="button" class="btn btn-primary" (click)="operacionCuatro(val1.value, val2.value)">Realizar calculo</button>
+                Resultado: {{resultado3}}
+                </div>
+                <input 
+                    name="data" 
+                    formControlName="data"
+                    [ngModel]="resultado3"
+                    type="hidden">
+        
+                <button class="btn btn-info" type="submit">Actualizar grafico</button>
+              </form>
+
+              <hr *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
+
+              <!--CST-->
+              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoSeis()">
+                  <h3>Confrontación de Stock</h3>
+                    <div class="form-group">
+                      <label>Cantidad de Materiales con Diferencia (MM-WMS) / Total de Materiales en Bodega</label><br>
+                      (
+                      <input class="form-control" type="number" name="val1" #val1 style="width: 55px;">
+                      <p class="form-control"> x </p>
+                      <input class="form-control" type="number" name="val2" #val2 style="width: 55px;">
+                      )
+                      <p class="form-control"> / </p>
+                      <input class="form-control" type="number" name="val3" #val3 style="width: 55px;">
+                      &nbsp;
+                      <button type="button" class="btn btn-primary" (click)="operacionCinco(val1.value, val2.value, val3.value)">Realizar calculo</button>
+                    Resultado: {{resultado4}}
+                    </div>
+                    <input 
+                      name="data" 
+                      formControlName="data"
+                      [ngModel]="resultado4"
+                      type="hidden">
+
+                    <button class="btn btn-info" type="submit">Actualizar grafico</button>
+                  </form>
+                  <hr *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
+
+              <!--DST-->
+              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoSiete()">
+                  <h3>Devoluciones de Stock</h3>
+                  <p>Devoluciones (Rechazos) ejecutados dentro de plazo</p>
+                    <div class="form-group">
+                      <label>Devoluciones dentro de plazo / Total de devoluciones</label><br>
+                      <input class="form-control" type="number" name="val1" #val1 style="width: 55px;">
+                      <p class="form-control"> / </p>
+                      <input class="form-control" type="number" name="val2" #val2 style="width: 55px;">
+                      &nbsp;
+                      <button type="button" class="btn btn-primary" (click)="operacionSeis(val1.value, val2.value)">Realizar calculo</button>
+                      Resultado: {{resultado5}}
+                    </div>
+                    <input 
+                    name="data" 
+                    formControlName="data"
+                    [ngModel]="resultado5"
+                    type="hidden">
+   
+                    <button class="btn btn-info" type="submit">Actualizar grafico</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+              
+              <h3>GRAFICOS DE VELOCIDAD</h3>
+              <hr>
+
+              <!--CMP-->
+              <form ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoOcho()">
+              <h3>Cumplimiento Plan de Mantenimiento Preventivo</h3>
+              <p>Mide el porcentaje de cumplimiento del Plan de Mantenimiento Preventivo Sistemático</p>
+              <div class="form-group">
+                <label>(Cantidad de actividades ejecutadas / Total actividades programadas) * 100</label><br>
+                <input class="form-control" type="number" name="val1" #val1 style="width: 55px;">
+                <p class="form-control"> / </p>
+                <input class="form-control" type="number" name="val2" #val2 style="width: 55px;">
+                <p class="form-control"> x 100 </p>&nbsp;
+                <button type="button" class="btn btn-primary" (click)="operacionSiete(val1.value, val2.value)">Realizar calculo</button>
+                Resultado: {{resultado6}}
+              </div>
+              <input 
+                    name="data" 
+                    formControlName="data"
+                    [ngModel]="resultado6"
+                    type="hidden">
+                
+              <button class="btn btn-info" type="submit">Actualizar grafico</button>
+            </form>
+
+              <hr *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
+
+              <!--TCR-->
+              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoNueve()">
+              <h3>Tiempo de Ciclo de Recepción</h3>
+              <p>Mide el porcentaje de líneas recepcionadas en el plazo establecido por sobre el total de las líneas</p>
+                <div class="form-group">
+                  <label>(Cantidad de líneas Recepcionadas  ≤ 24 horas / Total de Líneas Recepcionadas) * 100</label><br>
+                  <input class="form-control" type="number" name="val1" #val1 style="width: 55px;">
+                  <p class="form-control"> / </p>
+                  <input class="form-control" type="number" name="val2" #val2 style="width: 55px;">
+                  <p class="form-control"> x 100 </p>&nbsp;
+                  <button type="button" class="btn btn-primary" (click)="operacionOcho(val1.value, val2.value)">Realizar calculo</button>
+                      Resultado: {{resultado7}}
+                </div>
+                <input 
+                    name="data" 
+                    formControlName="data"
+                    [ngModel]="resultado7"
+                    type="hidden">
+                    <input 
+                    name="tipo" 
+                    formControlName="tipo"
+                    value="TCR"
+                    type="hidden">
+                <button class="btn btn-info" type="submit">Actualizar grafico</button>
+              </form>
+
+              <hr *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
+
+              <!--OTIF-->
+              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoDiez()">
+                  <h3>OTIF</h3>
+                  <p>Mide la cantidad de lineas entregadas respecto a las solicitadas</p>
+                    <div class="form-group">
+                      <label>(Cantidad de Líneas entregadas / Total de Líneas Solicitadas) * 100</label><br>
+                      <input class="form-control" type="number" name="val1" #val1 style="width: 55px;">
+                  <p class="form-control"> / </p>
+                  <input class="form-control" type="number" name="val2" #val2 style="width: 55px;">
+                  <p class="form-control"> x 100 </p>&nbsp;
+                  <button type="button" class="btn btn-primary" (click)="operacionNueve(val1.value, val2.value)">Realizar calculo</button>
+                      Resultado: {{resultado8}}
+                </div>
+                <input 
+                    name="data" 
+                    formControlName="data"
+                    [ngModel]="resultado8"
+                    type="hidden">
+                    <input 
+                    name="tipo" 
+                    formControlName="tipo"
+                    value="OTIF"
+                    type="hidden">
+                <button class="btn btn-info" type="submit">Actualizar grafico</button>
+              </form>
+
+
+                  <hr *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
+
+                  <!--SOS-->
+                  <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoOnce()">
+                  <h3>Emergencias</h3>
+                  <p>Emergancias tratadas a tiempo</p>
+                    <div class="form-group">
+                      <label>Cantidad de Líneas de Emergencia tratadas a tiempo / Cantidad de Líneas Totales de Emergencia</label><br>
+                      <input class="form-control" type="number" name="val1" #val1 style="width: 55px;">
+                      <p class="form-control"> / </p>
+                      <input class="form-control" type="number" name="val2" #val2 style="width: 55px;">
+                      &nbsp;
+                      <button type="button" class="btn btn-primary" (click)="operacionDiez(val1.value, val2.value)">Realizar calculo</button>
+                      Resultado: {{resultado9}}
+                    </div>
+                    <input 
+                    name="data" 
+                    formControlName="data"
+                    [ngModel]="resultado9"
+                    type="hidden">
+                   <button class="btn btn-info" type="submit">Actualizar grafico</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+              
+              <h3>GRAFICO DE DONA</h3>
+              <hr>
+
+              <!--DVA-->
+              <form ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoDoce()">
+              <h3>Diferencias de Valor Absoluto Inventario</h3>
+              <p>Mide la diferencia económica del inventario ya sea a favor o en contra</p>
+                <div class="form-group">
+                  <label>Valor Abs ( Monto total con diferencia )</label><br>
+                  <input class="form-control" 
+                  formControlName="data"
+                  type="number" 
+                  style="width: 55px;"
+                  name="data" 
+                  required>
+                </div>
+                <input 
+                name="tipo" 
+                formControlName="tipo"
+                ngModel="DVA"
+                type="hidden"
+                >
+                <button class="btn btn-info" type="submit">Actualizar grafico</button>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+              
+              <h3>GRAFICO DE CARAS</h3>
+              <hr>
+
+              <!--SCL-->
+              <form ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoTrece()">
+              <h3>Satisfacción del Cliente</h3>
+              <p>Mide la satisfacción de los Clientes</p>
+                <div class="form-group">
+                  <label>Promedio de Calificación Encuesta</label><br>
+                  <input class="form-control" 
+                  formControlName="data"
+                  type="number" 
+                  style="width: 55px;"
+                  name="data" 
+                  required>
+                </div>
+                <button class="btn btn-info" type="submit">Actualizar grafico</button>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>

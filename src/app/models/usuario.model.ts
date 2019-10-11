@@ -4,8 +4,9 @@ export class Usuario {
         public nombre: string,
         public email: string,
         public password: string,
-        public img?: string,
         public role?: string,
+        public empresa_id?: object,
+        public img?: string,
         public google?: boolean,
         public _id?: string,
         ) { }

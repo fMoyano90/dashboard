@@ -1,0 +1,73 @@
+<div class="row animated fadeIn">
+    <div class="col-5">
+        <div class="card">
+            <div class="card-body">
+              
+                <h3>Crea una nueva empresa</h3>
+
+                <form ngNativeValidate [formGroup]="forma" (ngSubmit)="crearEmpresa()">
+                  <label for="nombre">Nombre empresa</label>
+                  <input class="form-control" 
+                    type="text" 
+                    name="nombre" 
+                    formControlName="nombre" 
+                    required>
+                  <label for="categoria" class="pt-1">Tipo de contrato</label>
+                  <div class="form-check">
+                    <input class="form-check-input" 
+                      type="radio" 
+                      name="categoria" 
+                      formControlName="categoria"
+                      value="BASICO" 
+                      id="categoria1" 
+                      >
+                    <label class="form-check-label" for="categoria1">
+                      Básico
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" 
+                      type="radio" 
+                      name="categoria" 
+                      formControlName="categoria"
+                      value="TRANSPORTE"     
+                      id="categoria2"
+                      >
+                    <label class="form-check-label" for="categoria2">
+                      Transporte
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" 
+                      type="radio" 
+                      name="categoria" 
+                      formControlName="categoria" 
+                      value="BODEGA"  
+                      id="categoria3"
+                      >                    
+                    <label class="form-check-label" for="categoria3">
+                      Bodega
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" 
+                      type="radio" 
+                      name="categoria" 
+                      formControlName="categoria"
+                      value="MIXTO"     
+                      id="categoria4"
+                      >                    
+                    <label class="form-check-label" for="categoria4">
+                      Mixto
+                    </label>
+                  </div>
+                  <button type="submit" class="btn btn-info btn-block">
+                    <i class="fa fa-plus"></i> <b> CREAR EMPRESA</b></button>
+
+                  <a routerLink='/empresas' class="btn-outline-info btn mt-2">Volver</a>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

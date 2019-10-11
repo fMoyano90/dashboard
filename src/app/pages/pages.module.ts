@@ -1,8 +1,10 @@
 // Modulos
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
+
+
 
 
 // Rutas
@@ -23,6 +25,7 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 // temporal
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.component';
+import { GraficoBarraComponent } from '../components/grafico-barra/grafico-barra.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
@@ -33,6 +36,8 @@ import { EmpresasComponent } from './empresas/empresas.component';
 import { AdministradoresComponent } from './administradores/administradores.component';
 import { AdministradorComponent } from './administradores/administrador.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { CrearGraficasComponent } from './graficas1/crear-graficas.component';
+import { CrearEmpresaComponent } from './empresas/crear-empresa.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +47,7 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     Graficas1Component,
     IncrementadorComponent,
     GraficoDonaComponent,
+    GraficoBarraComponent,
     AccountSettingsComponent,
     PromesasComponent,
     RxjsComponent,
@@ -51,7 +57,9 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     EmpresasComponent,
     AdministradoresComponent,
     AdministradorComponent,
-    BusquedaComponent
+    BusquedaComponent,
+    CrearGraficasComponent,
+    CrearEmpresaComponent,
   ],
   exports: [
     PagesComponent,
@@ -65,7 +73,8 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     PAGES_ROUTES,
     FormsModule,
     ChartsModule,
-    PipesModule
+    PipesModule,
+    ReactiveFormsModule,
   ]
 })
 
