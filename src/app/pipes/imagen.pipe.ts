@@ -31,8 +31,12 @@ export class ImagenPipe implements PipeTransform {
         url += '/administradores/' + img;
         break;
 
+      case 'noticia':
+        url += '/noticias/' + img;
+        break;
+
       default:
-      console.log('Tipo de imagen no existen, usar: usuario, empresa o administrador');
+      console.log('Tipo de imagen no existen, usar: usuario, empresa, administrador o noticia');
       url += '/usuario/xxx';
 
     }

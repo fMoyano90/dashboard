@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, NgZone, OnInit } from '@angular/core';
+import { Component, AfterViewInit, NgZone, OnInit, ElementRef ,ViewChild } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import * as am4core from "@amcharts/amcharts4/core";
@@ -9,6 +9,15 @@ import { EmpresaService } from '../../services/empresa/empresa.service';
 import { Grafico } from '../../models/grafico.model';
 import { GraficoService } from '../../services/grafico/grafico.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import _swal from 'sweetalert';
+import { UsuarioService } from '../../services/service.index';
+import { Usuario } from 'src/app/models/usuario.model';
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
+
+declare var $:any;
+
+
 
 am4core.useTheme(am4themes_animated)
 
@@ -19,10 +28,25 @@ am4core.useTheme(am4themes_animated)
 })
 export class Graficas1Component implements AfterViewInit, OnInit {
   empresa: Empresa;
+  usuario: Usuario;
 
   public month;
   public year;
 
+  public idG1: string;
+  public idG2: string;
+  public idG3: string;
+  public idG4: string;
+  public idG5: string;
+  public idG6: string;
+  public idG7: string;
+  public idG8: string;
+  public idG9: string;
+  public idG10: string;
+  public idG11: string;
+  public idG12: string;
+  public idG13: string;
+  public idG14: string;
   public dataG1: number[];
   public dataG2: number[];
   public dataG3: number[];
@@ -295,11 +319,45 @@ export class Graficas1Component implements AfterViewInit, OnInit {
       }
     },
   };
+  
+  public captureScreen()  
+  {  
+    var HTML_Width = $('#content').width();
+		var HTML_Height = $('#content').height();
+		var top_left_margin = 15;
+		var PDF_Width = HTML_Width+(top_left_margin*2);
+		var PDF_Height = (PDF_Width*1.5)+(top_left_margin*2);
+		var canvas_image_width = HTML_Width;
+    var canvas_image_height = HTML_Height;
+
+    var totalPDFPages = Math.ceil(HTML_Height/PDF_Height)-1;
+    var data = document.getElementById('content');  
+
+    
+    html2canvas(data).then(canvas => {
+      canvas.getContext('2d');
+
+      console.log(canvas.height+"  "+canvas.width);
+
+			var imgData = canvas.toDataURL("image/jpeg", 1.0);
+			var pdf = new jspdf('p', 'pt',  [PDF_Width, PDF_Height]);
+		    pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin,canvas_image_width,canvas_image_height);
+			
+			
+			for (var i = 1; i <= totalPDFPages; i++) { 
+				pdf.addPage(PDF_Width, PDF_Height);
+				pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
+			}
+			
+		    pdf.save("informe-cacciuttolo.pdf");
+    });  
+  }
 
   constructor(
     private zone: NgZone,
     public _empresaService: EmpresaService,
     public _graficoService: GraficoService,
+    public _usuarioService: UsuarioService,
     public _router: Router,
     public activatedRoute: ActivatedRoute
     ) {
@@ -332,6 +390,8 @@ export class Graficas1Component implements AfterViewInit, OnInit {
     let fecha = new Date();
     this.month = meses[fecha.getMonth()];
     this.year = fecha.getFullYear();
+
+    this.usuario = this._usuarioService.usuario;
   }
 
   ngAfterViewInit() {
@@ -583,6 +643,7 @@ export class Graficas1Component implements AfterViewInit, OnInit {
               let data1:number = +grafico[0].data;
               let data2:number = +grafico[1].data;
               let data3:number = +grafico[2].data;
+              let grafico_id = grafico[0]._id;
               data1 = Number(data1.toFixed(2));
               data2 = Number(data2.toFixed(2));
               data3 = Number(data3.toFixed(2));
@@ -595,6 +656,8 @@ export class Graficas1Component implements AfterViewInit, OnInit {
               let mes2 = monthNames[+grafico[0].mes - 2];
               let mes3 = monthNames[+grafico[0].mes - 3];
               this.graficos.grafico1.labels = [mes1, mes2, mes3];
+              this.idG1 = grafico_id;
+
             });
   }
 
@@ -605,6 +668,7 @@ export class Graficas1Component implements AfterViewInit, OnInit {
               let data1:number = +grafico[0].data;
               let data2:number = +grafico[1].data;
               let data3:number = +grafico[2].data;
+              let grafico_id = grafico[0]._id;
               data1 = Number(data1.toFixed(2));
               data2 = Number(data2.toFixed(2));
               data3 = Number(data3.toFixed(2));
@@ -617,6 +681,7 @@ export class Graficas1Component implements AfterViewInit, OnInit {
               let mes2 = monthNames[+grafico[0].mes - 2];
               let mes3 = monthNames[+grafico[0].mes - 3];
               this.graficos.grafico2.labels = [mes1, mes2, mes3];
+              this.idG2 = grafico_id;
             });
   }
 
@@ -627,6 +692,7 @@ export class Graficas1Component implements AfterViewInit, OnInit {
               let data1:number = +grafico[0].data;
               let data2:number = +grafico[1].data;
               let data3:number = +grafico[2].data;
+              let grafico_id = grafico[0]._id;
               data1 = Number(data1.toFixed(2));
               data2 = Number(data2.toFixed(2));
               data3 = Number(data3.toFixed(2));
@@ -640,6 +706,8 @@ export class Graficas1Component implements AfterViewInit, OnInit {
               let mes2 = monthNames[+grafico[0].mes - 2];
               let mes3 = monthNames[+grafico[0].mes - 3];
               this.graficos.grafico3.labels = [mes1, mes2, mes3];
+              this.idG3 = grafico_id;
+
             });
   }
 
@@ -650,6 +718,7 @@ export class Graficas1Component implements AfterViewInit, OnInit {
               let data1:number = +grafico[0].data;
               let data2:number = +grafico[1].data;
               let data3:number = +grafico[2].data;
+              let grafico_id = grafico[0]._id;
               data1 = Number(data1.toFixed(2));
               data2 = Number(data2.toFixed(2));
               data3 = Number(data3.toFixed(2));
@@ -666,6 +735,8 @@ export class Graficas1Component implements AfterViewInit, OnInit {
               let mes2 = monthNames[+grafico[0].mes - 2];
               let mes3 = monthNames[+grafico[0].mes - 3];
               this.graficos.grafico4.labels = [mes1, mes2, mes3];
+              this.idG4 = grafico_id;
+
             });
   }
 
@@ -674,9 +745,12 @@ export class Graficas1Component implements AfterViewInit, OnInit {
     this._graficoService.obtenerGrafico( id, tipo )
             .subscribe( grafico => {
               let data:number = +grafico[0].data;
+              let grafico_id = grafico[0]._id;
               data = Number(data.toFixed(2));
               this.dataG5 = [data, 1000, 500];
               this.graficos.grafico5.data = this.dataG5;
+              this.idG5 = grafico_id;
+
             });
   }
 
@@ -685,9 +759,11 @@ export class Graficas1Component implements AfterViewInit, OnInit {
     this._graficoService.obtenerGrafico( id, tipo )
             .subscribe( grafico => {
               let data:number = +grafico[0].data;
+              let grafico_id = grafico[0]._id;
               data = Number(data.toFixed(2));
               this.dataG6 = [data, 100 - data];
               this.graficos.grafico6.data = this.dataG6;
+              this.idG6 = grafico_id;
             });
   }
 
@@ -696,9 +772,12 @@ export class Graficas1Component implements AfterViewInit, OnInit {
     this._graficoService.obtenerGrafico( id, tipo )
             .subscribe( grafico => {
               let data:number = +grafico[0].data;
+              let grafico_id = grafico[0]._id;
               data = Number(data.toFixed(2));
               this.dataG7 = [data, 100 - data];
               this.graficos.grafico7.data = this.dataG7;
+              this.idG7 = grafico_id;
+
             });
   }
 
@@ -707,9 +786,12 @@ export class Graficas1Component implements AfterViewInit, OnInit {
     this._graficoService.obtenerGrafico( id, tipo )
             .subscribe( grafico => {
               let data:number = +grafico[0].data;
+              let grafico_id = grafico[0]._id;
               data = Number(data.toFixed(2));
               this.dataG8 = [data, 100 - data];
               this.graficos.grafico8.data = this.dataG8;
+              this.idG8 = grafico_id;
+
             });
   }
 
@@ -718,9 +800,12 @@ export class Graficas1Component implements AfterViewInit, OnInit {
     this._graficoService.obtenerGrafico( id, tipo )
             .subscribe( grafico => {
               let data:number = +grafico[0].data;
+              let grafico_id = grafico[0]._id;
               data = Number(data.toFixed(2));
               this.dataG9 = [data, 100 - data];
               this.graficos.grafico9.data = this.dataG9;
+              this.idG9 = grafico_id;
+
             });
   }
 
@@ -729,10 +814,13 @@ export class Graficas1Component implements AfterViewInit, OnInit {
     this._graficoService.obtenerGrafico( id, tipo )
             .subscribe( grafico => {
               let data:number = +grafico[0].data;
+              let grafico_id = grafico[0]._id;
               data = Number(data.toFixed(1));
               this.dataG10 = data;
               this.hand1.value = this.dataG10;
               this.label1.text = this.dataG10 + '%';
+              this.idG10 = grafico_id;
+
             });
   }
 
@@ -741,10 +829,13 @@ export class Graficas1Component implements AfterViewInit, OnInit {
     this._graficoService.obtenerGrafico( id, tipo )
     .subscribe( grafico => {
       let data:number = +grafico[0].data;
+      let grafico_id = grafico[0]._id;
       data = Number(data.toFixed(1));
       this.dataG11 = data;
       this.hand2.value = this.dataG11;
       this.label2.text = this.dataG11 + '%';
+      this.idG11 = grafico_id;
+
     });
   }
 
@@ -753,10 +844,13 @@ export class Graficas1Component implements AfterViewInit, OnInit {
     this._graficoService.obtenerGrafico( id, tipo )
     .subscribe( grafico => {
       let data:number = +grafico[0].data;
+      let grafico_id = grafico[0]._id;
       data = Number(data.toFixed(1));
       this.dataG12 = data;
       this.hand3.value = this.dataG12;
       this.label3.text = this.dataG12 + '%';
+      this.idG12 = grafico_id;
+
     });
   }
 
@@ -765,10 +859,13 @@ export class Graficas1Component implements AfterViewInit, OnInit {
     this._graficoService.obtenerGrafico( id, tipo )
     .subscribe( grafico => {
       let data:number = +grafico[0].data;
+      let grafico_id = grafico[0]._id;
       data = Number(data.toFixed(1));
       this.dataG13 = data;
       this.hand4.value = this.dataG13;
       this.label4.text = this.dataG13 + '%';
+      this.idG13 = grafico_id;
+
     });
   }
 
@@ -777,10 +874,34 @@ export class Graficas1Component implements AfterViewInit, OnInit {
     this._graficoService.obtenerGrafico( id, tipo )
             .subscribe( grafico => {
               let data:number = +grafico[0].data;
+              let grafico_id = grafico[0]._id;
               data = Number(data.toFixed(1));
               this.dataG14 = data;
+              this.idG14 = grafico_id;
+
             });
   }
+
+  borrarGrafico( id: string ) {
+
+    _swal( {
+      title: '¿Esta seguro?',
+      text: 'Esta a punto de borrar el último grafico de este tipo. ' ,
+      icon: 'warning',
+      buttons: ['Cancelar', 'Borrar'],
+      dangerMode: true
+    })
+    .then( borrar => {
+      if (borrar) {
+        this._graficoService.borrarGrafico(id)
+                      .subscribe(borrado =>{
+                        console.log(borrado);
+                      });
+      }
+    });
+  }
+
+
 
 }
 

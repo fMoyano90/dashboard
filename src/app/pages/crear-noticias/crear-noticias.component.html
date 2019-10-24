@@ -1,0 +1,32 @@
+<div class="row">
+<div class="col-7">
+    <div class="card">
+        <div class="card-body">
+                <form ngNativeValidate [formGroup]="forma" (ngSubmit)="subirNoticia()">
+                    <div class="form-group">
+                      <input formControlName="titulo" name="titulo" class="form-control" type="text" required placeholder="Título">
+                    </div>
+                    <div class="form-group">
+                      <input formControlName="descripcion" name="descripcion" type="text" class="form-control" placeholder="Breve reseña">
+                    </div>
+                    <div class="form-group">
+                      <textarea [froalaEditor]="froala_options" formControlName="body" name="body" class="form-control"></textarea>
+                   </div>
+                    <div class="form-group">
+                      <label>Relevancia</label>
+                      <select formControlName="tipo" name="tipo" type="text" class="form-control">
+                        <option value="NORMAL" selected>Normal</option>
+                        <option value="PRINCIPAL">Principal</option>
+                      </select>
+                    </div>
+          
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                    <i class="fa fa-upload"></i>  Subir noticia
+                    </button>
+                    <a routerLink="/administradores" class="btn btn-inverse waves-effect waves-light">Volver</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

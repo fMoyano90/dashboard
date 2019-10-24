@@ -14,7 +14,6 @@ import { UsuarioService } from '../usuario/usuario.service';
 export class EmpresaService {
 
   empresa: Empresa;
-  token: string;
 
   constructor(
     public http: HttpClient,
@@ -22,7 +21,6 @@ export class EmpresaService {
     public _subirArchivoService: SubirArchivoService,
     public _usuarioService: UsuarioService
   ) {
-    this.token = localStorage.getItem('token');
    }
 
   cargarEmpresas( desde: number = 0 ) {
@@ -40,7 +38,7 @@ export class EmpresaService {
 
   crearEmpresa( empresa: Empresa ) {
     let url = URL_SERVICIOS + '/empresa';
-    url += '?token=' + this.token;
+    url += '?token=' + this._usuarioService.token;
 
     return this.http.post( url, empresa )
                       .pipe(map( (resp: any) => {
@@ -51,7 +49,7 @@ export class EmpresaService {
 
   actualizarEmpresa(	empresa:	Empresa ) {
     let url = URL_SERVICIOS + '/empresa/' + empresa._id;
-    url += '?token=' + this.token;
+    url += '?token=' + this._usuarioService.token;
 
     return this.http.put(url, empresa)
                     .pipe(map((resp: any) =>{
@@ -75,7 +73,7 @@ export class EmpresaService {
 
   borrarEmpresa( id: string	) {
     let url =  URL_SERVICIOS + '/empresa/' + id;
-    url += '?token=' + this.token;
+    url += '?token=' + this._usuarioService.token;
 
     return this.http.delete( url )
                   .pipe(map((resp: any) => {

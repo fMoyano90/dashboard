@@ -81,7 +81,6 @@ export class CrearGraficasComponent implements OnInit {
     this._graficoService.crearGrafico(grafico)
                   .subscribe( crear => {
                     console.log(crear);
-                    location.reload();
                   });
   }
 
@@ -104,7 +103,7 @@ export class CrearGraficasComponent implements OnInit {
     this._graficoService.crearGrafico(grafico)
                   .subscribe( crear => {
                     console.log(crear);
-                    location.reload();
+                    
                   });
   }
   crearGraficoDos() {
@@ -126,7 +125,7 @@ export class CrearGraficasComponent implements OnInit {
     this._graficoService.crearGrafico(grafico)
                   .subscribe( crear => {
                     console.log(crear);
-                    location.reload();
+                    
                   });
   }
   crearGraficoTres() {
@@ -148,7 +147,7 @@ export class CrearGraficasComponent implements OnInit {
     this._graficoService.crearGrafico(grafico)
                   .subscribe( crear => {
                     console.log(crear);
-                    location.reload();
+                    
                   });
   }
   crearGraficoCuatro() {
@@ -170,7 +169,7 @@ export class CrearGraficasComponent implements OnInit {
     this._graficoService.crearGrafico(grafico)
                   .subscribe( crear => {
                     console.log(crear);
-                    location.reload();
+                    
                   });
   }
   crearGraficoCinco() {
@@ -192,7 +191,7 @@ export class CrearGraficasComponent implements OnInit {
     this._graficoService.crearGrafico(grafico)
                   .subscribe( crear => {
                     console.log(crear);
-                    location.reload();
+                    
                   });
   }
   crearGraficoSeis() {
@@ -214,7 +213,7 @@ export class CrearGraficasComponent implements OnInit {
     this._graficoService.crearGrafico(grafico)
                   .subscribe( crear => {
                     console.log(crear);
-                    location.reload();
+                    
                   });
   }
   crearGraficoSiete() {
@@ -236,7 +235,7 @@ export class CrearGraficasComponent implements OnInit {
     this._graficoService.crearGrafico(grafico)
                   .subscribe( crear => {
                     console.log(crear);
-                    location.reload();
+                    
                   });
   }
   crearGraficoOcho() {
@@ -258,7 +257,7 @@ export class CrearGraficasComponent implements OnInit {
     this._graficoService.crearGrafico(grafico)
                   .subscribe( crear => {
                     console.log(crear);
-                    location.reload();
+                    
                   });
   }
   crearGraficoNueve() {
@@ -280,7 +279,7 @@ export class CrearGraficasComponent implements OnInit {
     this._graficoService.crearGrafico(grafico)
                   .subscribe( crear => {
                     console.log(crear);
-                    location.reload();
+                    
                   });
   }
   crearGraficoDiez() {
@@ -302,7 +301,7 @@ export class CrearGraficasComponent implements OnInit {
     this._graficoService.crearGrafico(grafico)
                   .subscribe( crear => {
                     console.log(crear);
-                    location.reload();
+                    
                   });
   }
   crearGraficoOnce() {
@@ -324,7 +323,7 @@ export class CrearGraficasComponent implements OnInit {
     this._graficoService.crearGrafico(grafico)
                   .subscribe( crear => {
                     console.log(crear);
-                    location.reload();
+                    
                   });
   }
   crearGraficoDoce() {
@@ -346,7 +345,7 @@ export class CrearGraficasComponent implements OnInit {
     this._graficoService.crearGrafico(grafico)
                   .subscribe( crear => {
                     console.log(crear);
-                    location.reload();
+                    
                   });
   }
   crearGraficoTrece() {
@@ -368,14 +367,14 @@ export class CrearGraficasComponent implements OnInit {
     this._graficoService.crearGrafico(grafico)
                   .subscribe( crear => {
                     console.log(crear);
-                    location.reload();
+                    
                   });
   }
 
 
 
   operacionUno(val1: number, val2:number){
-    this.resultado = (+val1 / +val2) * 100;
+    this.resultado = +val1 / +val2;
     console.log(this.resultado);
     return this.resultado;
   }
@@ -396,7 +395,7 @@ export class CrearGraficasComponent implements OnInit {
     return this.resultado3;
   }
   operacionCinco(val1: number, val2:number, val3:number){
-    this.resultado4 = (+val1 * +val2) / val3;
+    this.resultado4 = +val1 / +val2;
     console.log(this.resultado4);
     return this.resultado4;
   }
@@ -421,7 +420,7 @@ export class CrearGraficasComponent implements OnInit {
     return this.resultado8;
   }
   operacionDiez(val1: number, val2:number){
-    this.resultado9 = +val1 / +val2;
+    this.resultado9 = (+val1 / +val2) * 100;
     console.log(this.resultado9);
     return this.resultado9;
   }

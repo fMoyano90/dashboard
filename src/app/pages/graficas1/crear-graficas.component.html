@@ -18,10 +18,10 @@
               <h3>GRAFICOS DE BARRA</h3>
               <hr>
 
-              <!--ATP-->
+              <!--1ATP-->
               <h3>Accidentes con tiempo perdido</h3>
               <p>Indica la Cantidad de Accidentes con Tiempo Perdido en el Periodo</p>
-              <form ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGrafico()">
+              <form ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGrafico(); ATP.reset()" #ATP>
                 <div class="form-group">
                   <label>Accidentes con tiempo perdido en el periodo</label><br>
                   <input class="form-control" 
@@ -41,16 +41,16 @@
 
               <hr *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
 
-              <!--PBO-->
-              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoUno()">
+              <!--2PBO-->
+              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoUno(); PBO.reset()" #PBO>
               <h3>Productividad bodega</h3>
               <p>Mide el grado de eficiencia del personal de bodega</p>
                 <div class="form-group">
-                  <label>(Cantidad de Líneas entregadas / Total de Líneas Solicitadas) * 100</label><br>
+                  <label>Cantidad de Transacciones / Total HH Personal</label><br>
                   <input class="form-control" type="number" style="width: 55px;" name="val1" #val1>
                   <p class="form-control"> / </p>
                   <input class="form-control" type="number" style="width: 55px;" name="val2" #val2>
-                  <p class="form-control"> x 100 </p>&nbsp;
+                  &nbsp;
                   <button type="button" class="btn btn-primary" (click)="operacionUno(val1.value, val2.value)">Realizar calculo</button>
                   Resultado: <b>{{resultado}}</b>
                 </div>
@@ -71,7 +71,7 @@
               <hr *ngIf="empresa.categoria === 'TRANSPORTE' || empresa.categoria === 'MIXTO'">
 
               <!--PTE-->
-              <form *ngIf="empresa.categoria === 'TRANSPORTE' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoDos()">
+              <form *ngIf="empresa.categoria === 'TRANSPORTE' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoDos(); PTE.reset()" #PTE>
                   <h3>Productividad transporte por Equipo</h3>
                   <p>Mide el grado de eficiencia del personal de transporte según el número de equipos</p>
                     <div class="form-group">
@@ -96,8 +96,8 @@
     
                   <hr *ngIf="empresa.categoria === 'BASICO' || empresa.categoria === 'MIXTO'">
 
-                  <!--CSR-->
-              <form *ngIf="empresa.categoria === 'BASICO' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoTres()">
+                  <!--3CSR-->
+              <form *ngIf="empresa.categoria === 'BASICO' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoTres(); CSR.reset()" #CSR>
                   <h3>Cantidad de Servicios</h3>
                   <p>Mide la cantidad de servicios realizados en el mes.</p>
                     <div class="form-group">
@@ -128,12 +128,12 @@
               <h3>GRAFICOS DE TORTA</h3>
               <hr *ngIf="empresa.categoria === 'TRANSPORTE' || empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
 
-              <!--DEQ-->
-              <form *ngIf="empresa.categoria === 'TRANSPORTE' || empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoCuatro()">
+              <!--4DEQ-->
+              <form *ngIf="empresa.categoria === 'TRANSPORTE' || empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoCuatro(); DEQ.reset()" #DEQ>
               <h3>Disponibilidad de Equipos</h3>
               <p>Mide el porcentaje de disponibilidad de la Flota</p>
               <div class="form-group">
-                <label>(Cantidad de Líneas entregadas / Total de Líneas Solicitadas) * 100</label><br>
+                <label>(Días disponibles efectivos / Días totales según faena) * 100</label><br>
                 <input class="form-control" type="number" style="width: 55px;" name="val1" #val1>
                 <p class="form-control"> / </p>
                 <input class="form-control" type="number" style="width: 55px;" name="val2" #val2>
@@ -151,8 +151,8 @@
 
               <hr *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
 
-              <!--DUP-->
-              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoCinco()">
+              <!--5DUP-->
+              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoCinco(); DUP.reset()" #DUP>
               <h3>Disponibilidad de uso pulmones</h3>
                 <div class="form-group">
                   <label>Cantidad de Líneas Procesadas / Cantidad de Líneas Solicitadas</label><br>
@@ -173,18 +173,16 @@
 
               <hr *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
 
-              <!--CST-->
-              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoSeis()">
+              <!--6CST-->
+              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoSeis(); CST.reset()" #CST>
                   <h3>Confrontación de Stock</h3>
                     <div class="form-group">
                       <label>Cantidad de Materiales con Diferencia (MM-WMS) / Total de Materiales en Bodega</label><br>
-                      (
+                      
                       <input class="form-control" type="number" name="val1" #val1 style="width: 55px;">
-                      <p class="form-control"> x </p>
-                      <input class="form-control" type="number" name="val2" #val2 style="width: 55px;">
-                      )
                       <p class="form-control"> / </p>
-                      <input class="form-control" type="number" name="val3" #val3 style="width: 55px;">
+                      <input class="form-control" type="number" name="val2" #val2 style="width: 55px;">
+                    
                       &nbsp;
                       <button type="button" class="btn btn-primary" (click)="operacionCinco(val1.value, val2.value, val3.value)">Realizar calculo</button>
                     Resultado: {{resultado4}}
@@ -199,8 +197,8 @@
                   </form>
                   <hr *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
 
-              <!--DST-->
-              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoSiete()">
+              <!--7DST-->
+              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoSiete(); DST.reset()" #DST>
                   <h3>Devoluciones de Stock</h3>
                   <p>Devoluciones (Rechazos) ejecutados dentro de plazo</p>
                     <div class="form-group">
@@ -232,8 +230,8 @@
               <h3>GRAFICOS DE VELOCIDAD</h3>
               <hr>
 
-              <!--CMP-->
-              <form ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoOcho()">
+              <!--8CMP-->
+              <form ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoOcho(); CMP.reset()" #CMP>
               <h3>Cumplimiento Plan de Mantenimiento Preventivo</h3>
               <p>Mide el porcentaje de cumplimiento del Plan de Mantenimiento Preventivo Sistemático</p>
               <div class="form-group">
@@ -256,8 +254,8 @@
 
               <hr *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
 
-              <!--TCR-->
-              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoNueve()">
+              <!--9TCR-->
+              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoNueve(); TCR.reset()" #TCR>
               <h3>Tiempo de Ciclo de Recepción</h3>
               <p>Mide el porcentaje de líneas recepcionadas en el plazo establecido por sobre el total de las líneas</p>
                 <div class="form-group">
@@ -284,8 +282,8 @@
 
               <hr *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
 
-              <!--OTIF-->
-              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoDiez()">
+              <!--10OTIF-->
+              <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoDiez(); OTIF.reset()" #OTIF>
                   <h3>OTIF</h3>
                   <p>Mide la cantidad de lineas entregadas respecto a las solicitadas</p>
                     <div class="form-group">
@@ -313,8 +311,8 @@
 
                   <hr *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'">
 
-                  <!--SOS-->
-                  <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoOnce()">
+                  <!--11SOS-->
+                  <form *ngIf="empresa.categoria === 'BODEGA' || empresa.categoria === 'MIXTO'" ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoOnce(); SOS.reset()" #SOS>
                   <h3>Emergencias</h3>
                   <p>Emergancias tratadas a tiempo</p>
                     <div class="form-group">
@@ -322,6 +320,7 @@
                       <input class="form-control" type="number" name="val1" #val1 style="width: 55px;">
                       <p class="form-control"> / </p>
                       <input class="form-control" type="number" name="val2" #val2 style="width: 55px;">
+                      <p class="form-control"> x 100 </p>&nbsp;
                       &nbsp;
                       <button type="button" class="btn btn-primary" (click)="operacionDiez(val1.value, val2.value)">Realizar calculo</button>
                       Resultado: {{resultado9}}
@@ -347,7 +346,7 @@
               <hr>
 
               <!--DVA-->
-              <form ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoDoce()">
+              <form ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoDoce(); DVA.reset()" #DVA>
               <h3>Diferencias de Valor Absoluto Inventario</h3>
               <p>Mide la diferencia económica del inventario ya sea a favor o en contra</p>
                 <div class="form-group">
@@ -381,7 +380,7 @@
               <hr>
 
               <!--SCL-->
-              <form ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoTrece()">
+              <form ngNativeValidate [formGroup]="forma" (ngSubmit)="crearGraficoTrece(); SCL.reset()" #SCL>
               <h3>Satisfacción del Cliente</h3>
               <p>Mide la satisfacción de los Clientes</p>
                 <div class="form-group">

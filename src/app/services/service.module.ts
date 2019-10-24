@@ -14,6 +14,7 @@ import {
   GraficoService,
   EmpresaService,
   AdministradorService,
+  NoticiaService,
 } from './service.index';
 
 @NgModule({
@@ -33,6 +34,7 @@ import {
     LoginGuardGuard,
     AdminGuard,
     SubirArchivoService,
+    NoticiaService,
     ModalUploadService
   ]
 })

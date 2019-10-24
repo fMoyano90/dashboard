@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-4" *ngFor="let noticia of noticias">
+    <div class="card">
+      <img (click)="mostrarModal( noticia._id )" [src]="noticia.img | imagen: 'noticia'" class="img-fluid pointer" *ngIf="usuario.role === 'ADMIN_ROLE'">      
+      <img [routerLink]="['/noticia', noticia._id]" [src]="noticia.img | imagen: 'noticia'" class="img-fluid pointer" *ngIf="usuario.role != 'ADMIN_ROLE'">      
+      <div class="card-body">
+        <h5 class="card-title">{{noticia.titulo}}</h5>
+        <p class="card-text">{{noticia.descripcion}}</p>
+        <a [routerLink]="['/noticia', noticia._id]"  class="btn btn-info">Ver más</a>
+        <button [routerLink]="['/editar-noticia', noticia._id]" class="btn btn-warning" *ngIf="usuario.role === 'ADMIN_ROLE'"><i class="fa fa-edit"></i></button>
+        <button (click)="borrarNoticia( noticia )" class="btn btn-danger" *ngIf="usuario.role === 'ADMIN_ROLE'"><i class="fa fa-trash"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+<button (click)="cambiarDesde(-6)" class="btn btn-secondary">Anteriores</button>
+<button (click)="cambiarDesde(6)" class="btn btn-secondary">Siguientes</button>
+<button [routerLink]="['/dashboard']" class="btn btn-info ml-5">Volver</button>

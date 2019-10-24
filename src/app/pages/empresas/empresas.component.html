@@ -44,6 +44,7 @@
                       <tr>
                           <th>Imagen</th>
                           <th>Empresa</th>
+                          <th>Contrato</th>
                           <th></th>
                           <th></th>
                       </tr>
@@ -56,6 +57,14 @@
                           <td>
                               <input [(ngModel)]="empresa.nombre" name="nombre" class="form-control">
                           </td>
+                          <td>
+                            <select [(ngModel)]="empresa.categoria" name="categoria" class="form-control">
+                                <option value="BASICO">Básico</option>
+                                <option value="TRANSPORTE">Transporte</option>
+                                <option value="BODEGA">Bodega</option>
+                                <option value="MIXTO">Mixto</option>
+                            </select>
+                         </td>
                           <td>
                               <button (click)="guardarEmpresa( empresa )" class="btn btn-success">
                                   <i class="fa fa-save"></i>

@@ -20,6 +20,11 @@ import { AdministradorComponent } from './administradores/administrador.componen
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { CrearGraficasComponent } from './graficas1/crear-graficas.component';
 import { CrearEmpresaComponent } from './empresas/crear-empresa.component';
+import { CrearNoticiasComponent } from './crear-noticias/crear-noticias.component';
+import { DetalleNoticiaComponent } from './detalle-noticia/detalle-noticia.component';
+import { NoticiasComponent } from './noticias/noticias.component';
+import { ActualizarNoticiaComponent } from './actualizar-noticia/actualizar-noticia.component';
+
 
 
 const pagesRoutes: Routes = [
@@ -48,6 +53,10 @@ const pagesRoutes: Routes = [
             { path: 'administradores', component: AdministradoresComponent, data: { titulo: 'Mantenimiento de Administradores' } },
             { path: 'administrador/:id', component: AdministradorComponent, data: { titulo: 'Actualizar Administrador' } },
             { path: 'empresas/modificar-graficos/:empresa', component: CrearGraficasComponent, data: { titulo: 'Actualizar Graficas' } },
+            { path: 'crear-noticia', component: CrearNoticiasComponent, data: { titulo: 'Crear noticia' } },
+            { path: 'editar-noticia/:id', component: ActualizarNoticiaComponent, data: { titulo: 'Editar noticia' } },
+            { path: 'noticia/:id', component: DetalleNoticiaComponent, data: { titulo: 'Noticia' } },
+            { path: 'noticias', component: NoticiasComponent, data: { titulo: 'Noticias' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
     },

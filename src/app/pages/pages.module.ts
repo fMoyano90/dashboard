@@ -3,9 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
-
-
-
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 // Rutas
 import { PAGES_ROUTES } from './pages.routes';
@@ -38,6 +36,10 @@ import { AdministradorComponent } from './administradores/administrador.componen
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { CrearGraficasComponent } from './graficas1/crear-graficas.component';
 import { CrearEmpresaComponent } from './empresas/crear-empresa.component';
+import { CrearNoticiasComponent } from './crear-noticias/crear-noticias.component';
+import { DetalleNoticiaComponent } from './detalle-noticia/detalle-noticia.component';
+import { NoticiasComponent } from './noticias/noticias.component';
+import { ActualizarNoticiaComponent } from './actualizar-noticia/actualizar-noticia.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,10 @@ import { CrearEmpresaComponent } from './empresas/crear-empresa.component';
     BusquedaComponent,
     CrearGraficasComponent,
     CrearEmpresaComponent,
+    CrearNoticiasComponent,
+    DetalleNoticiaComponent,
+    NoticiasComponent,
+    ActualizarNoticiaComponent,
   ],
   exports: [
     PagesComponent,
@@ -75,6 +81,8 @@ import { CrearEmpresaComponent } from './empresas/crear-empresa.component';
     ChartsModule,
     PipesModule,
     ReactiveFormsModule,
+   [FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()],
+
   ]
 })
 

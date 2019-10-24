@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-7">
+      <div class="card">
+          <div class="card-body" *ngIf="noticia">
+                  <form ngNativeValidate (ngSubmit)="actualizarNoticia()">
+                      <div class="form-group">
+                        <input [(ngModel)]="noticia.titulo" name="titulo" class="form-control" type="text" required placeholder="Título">
+                      </div>
+                      <div class="form-group">
+                        <input [(ngModel)]="noticia.descripcion" name="descripcion" type="text" class="form-control" placeholder="Breve reseña">
+                      </div>
+                      <div class="form-group">
+                        <textarea [froalaEditor]="froala_options" name="body" [(ngModel)]="noticia.body" class="form-control"></textarea>
+                     </div>
+                      <div class="form-group">
+                        <label>Relevancia</label>
+                        <select [(ngModel)]="noticia.tipo" name="tipo" type="text" class="form-control">
+                          <option value="NORMAL" selected>Normal</option>
+                          <option vale="PRINCIPAL">Principal</option>
+                        </select>
+                      </div>
+            
+                      <button (click)="actualizarNoticia( noticia )" type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                      <i class="fa fa-edit"></i>  Editar noticia
+                      </button>
+                      <a routerLink="/noticias" class="btn btn-inverse waves-effect waves-light">Volver</a>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+  
